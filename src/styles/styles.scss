@@ -1,61 +1,67 @@
-#list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+html {
+  box-sizing: border-box;
 }
 
-.custom-btn {
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
-    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
-.load-more {
-  width: 130px;
-  height: 40px;
-  line-height: 42px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ 
+  text-align: center;
+}
+ul {
+  list-style: none;
   padding: 0;
-  border: none;
-  background: rgb(255, 27, 0);
-  background: linear-gradient(0deg, rgba(255, 27, 0, 1) 0%, rgba(251, 75, 2, 1) 100%);
+  margin: 0;
 }
-.load-more:hover {
-  color: #f0094a;
-  background: transparent;
-  box-shadow: none;
+.country-item {
+  font-size: 28px;
 }
-.load-more:before,
-.load-more:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #f0094a;
-  box-shadow: -1px -1px 5px 0px #fff, 7px 7px 20px 0px #0003, 4px 4px 5px 0px #0002;
-  transition: 400ms ease all;
+.card-title {
+  font-size: 32px;
+  color: #093131;
 }
-.load-more:after {
-  right: inherit;
-  top: inherit;
-  left: 0;
-  bottom: 0;
+.card-img {
+  width: 350px;
+  padding-top: 10px;
 }
-.load-more:hover:before,
-.load-more:hover:after {
-  width: 100%;
-  transition: 800ms ease all;
+.form-control {
+  width: 250px;
+  height: 36px;
+  border: 2px solid #093131;
+  border-radius: 2px;
+  background-color: transparent;
+  padding-left: 18px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.form-control::placeholder {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+}
+.input-name {
+  margin-top: 80px;
+  margin-bottom: 10px;
+  font-size: 40px;
+  color: #093131;
+}
+.card-wrapper {
+  margin: 10px auto;
+  padding: 15px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.397);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
+}
+.card-item {
+  font-weight: 600;
+  color: #093131;
 }

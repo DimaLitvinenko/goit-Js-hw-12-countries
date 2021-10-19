@@ -1,4 +1,4 @@
-// const path = require('path')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: __dirname + 'dist',
+    path: path.resolve(__dirname, 'build'),
     filename: 'main.js',
     clean: true
   },
@@ -36,10 +36,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin(), // Generates default index.html
-    new HtmlWebpackPlugin({  // Also generate a test.html
-      filename: 'test.html',
-      template: 'src/assets/test.html'
-    }),
+    
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
@@ -48,6 +45,6 @@ module.exports = {
   ],
   devServer: {
     open: true,
-    port: 9001,
+    port: 8888,
   },
 }

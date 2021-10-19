@@ -252,3 +252,142 @@ npm run deploy
    ### • Дефолтный (default) експорт и импорт
    ### • Именованный (named) експорт и импорт
    ### • Импорт пространства имён (namespace)
+
+
+
+================================
+pnotify
+=================
+Animate Module
+Fluid CSS animations using Animate.css.
+
+npm install --save-dev @pnotify/animate
+import {notice, defaultModules} from '@pnotify/core';
+import * as PNotifyAnimate from '@pnotify/animate';
+
+const myNotice = notice({
+  text: "I'm a notice.",
+  modules: new Map([
+    ...defaultModules,
+    [PNotifyAnimate, {
+      // Animate Module Options
+    }]
+  ])
+});
+PNotifyAnimate.defaults = {
+
+inClass: null
+The class to use to animate the notice in. If only one of these is set, it will be used for both.
+outClass: null
+The class to use to animate the notice out. If only one of these is set, it will be used for both.
+}
+
+The Animate module also creates a method, attention(aniClass, callback), on notices which accepts an attention grabber class and an animation completed callback.
+
+
+## Desktop Module
+
+Notifications that display even when the web page is not visible. Implements the [Web Notifications spec](http://www.w3.org/TR/notifications/).
+
+If the user's browser doesn't support Web Notifications, or they deny permission to show them, they will see regular in-browser notices, unless `fallback` is false.
+
+```sh
+npm install --save-dev @pnotify/desktop
+```
+
+```js
+import {notice, defaultModules} from '@pnotify/core';
+import * as PNotifyDesktop from '@pnotify/desktop';
+
+const myNotice = notice({
+  text: "I'm a notice.",
+  modules: new Map([
+    ...defaultModules,
+    [PNotifyDesktop, {
+      // Desktop Module Options
+    }]
+  ])
+});
+```
+
+`PNotifyDesktop.defaults = {`
+* `fallback: true`<br>
+  If desktop notifications are not supported or allowed, fall back to a regular notice.
+* `icon: null`<br>
+  The URL of the icon to display. If false, no icon will show. If null, a default icon will show.
+* `tag: null`<br>
+  Using a tag lets you update an existing notice, or keep from duplicating notices between tabs. If you leave tag null, one will be generated, facilitating the `update` function.
+* `title: null`<br>
+  Optionally display a different title for the desktop.
+* `text: null`<br>
+  Optionally display different text for the desktop.
+* `options: {}`<br>
+  Any additional options to be passed to the Notification constructor.
+
+`}`
+
+
+## Mobile Module
+
+Notices on mobile phones and tablets.
+
+```sh
+npm install --save-dev @pnotify/mobile
+```
+
+```js
+import {notice, defaultModules} from '@pnotify/core';
+import * as PNotifyMobile from '@pnotify/mobile';
+
+const myNotice = notice({
+  text: "I'm a notice.",
+  modules: new Map([
+    ...defaultModules,
+    [PNotifyMobile, {
+      // Mobile Module Options
+    }]
+  ])
+});
+```
+
+`PNotifyMobile.defaults = {`
+* `swipeDismiss: true`<br>
+  Let the user swipe the notice away.
+
+`}`
+
+
+## Animate Module  
+
+// import * as PNotifyAnimate from '@pnotify/animate';
+
+Fluid CSS animations using [Animate.css](https://daneden.github.io/animate.css/).
+
+```sh
+npm install --save-dev @pnotify/animate
+```
+
+```js
+import {notice, defaultModules} from '@pnotify/core';
+import * as PNotifyAnimate from '@pnotify/animate';
+
+const myNotice = notice({
+  text: "I'm a notice.",
+  modules: new Map([
+    ...defaultModules,
+    [PNotifyAnimate, {
+      // Animate Module Options
+    }]
+  ])
+});
+```
+
+`PNotifyAnimate.defaults = {`
+* `inClass: null`<br>
+  The class to use to animate the notice in. If only one of these is set, it will be used for both.
+* `outClass: null`<br>
+  The class to use to animate the notice out. If only one of these is set, it will be used for both.
+
+`}`
+
+The Animate module also creates a method, `attention(aniClass, callback)`, on notices which accepts an attention grabber class and an animation completed callback.
