@@ -6,7 +6,7 @@ Handlebars.registerHelper('tempC', function (value) {
   //   ||
   return (value - 273.15).toFixed(1)
 })
-import weatherTemplate from '../templates/weatherWidget.handlebars'
+import weatherTemplate from '../templates/weatherWidget.hbs'
 // console.log(Handlebars.helpers.tempCel(300))
 // import { setErrorMsg } from './notif'
 // console.log(setErrorMsg);
@@ -37,7 +37,7 @@ function insertWidget(template, data, place) {
 
 export class APIpexel {
   constructor() {
-    this.API_KEY = `563492ad6f91700001000001390f9fee0a794c1182a72e49e0e0eae2`
+    this.API_KEY = `563492ad6f91700001000001b823dafcb355488f9450baa6f4bdff32`
     this.BASE_URL = `https://api.pexels.com/v1`
     this.endPoint = `/search`
     this._page = 1
@@ -110,7 +110,7 @@ export class APIpexel {
 
 // export function getImages(query, place) {
 //   console.log(query)
-//   const API_KEY = `563492ad6f91700001000001390f9fee0a794c1182a72e49e0e0eae2`
+//   const API_KEY = `563492ad6f91700001000001b823dafcb355488f9450baa6f4bdff32`
 //   const BASE_URL = `https://api.pexels.com/v1`
 //   axios.defaults.headers.common.Authorization = API_KEY
 //   let endPoint = `/search`
