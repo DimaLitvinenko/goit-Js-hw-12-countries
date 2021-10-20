@@ -2,10 +2,12 @@
 <div class="card-wrapper">
     <h1 class="card-title">{{name}}</h1>
     <p class="card-item">Capital: {{capital}}</p>
-    <p class="card-item">Population: {{population}}</p>
-    <p class="card-item">Currency: {{currencies.name}}</p>1
-     <p class="card-item">Currency: {{currencies.name}}</p>
-    <h class="card-item">Language: {{languages.symbol}}</h>
+    <p class="card-item">Population: {{population}} people</p>
+    <p class="card-item">Country code: {{numericCode}}</p>
+     <p class="card-item">Area: {{area}}km</p>
+     <p class="card-item">Time: {{timezones }}</p>
+    {{!-- <p class="card-item">Currencie: {{currencies}}</p> --}}
+    <h class="card-item">Language:</h>
     <ul>
         {{#each languages}}
         <li>{{name}}</li>

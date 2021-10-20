@@ -7,10 +7,11 @@ import API from './js/fetchCountries.js';
 import refs from './js/refs.js';
 const { searching, countriesList, countryCard } = refs;
 
-searching.addEventListener('input', debounce(onSearch, 500));
+searching.addEventListener('input', debounce(onSearch, 1000));
 
-function onSearch(event) {
-  const searchQuery = event.target.value;
+function onSearch({ target }) {
+  const searchQuery = target.value;
+    console.log(searchQuery);
 
   if (searchQuery === '') {
     countriesList.innerHTML = '';
@@ -25,10 +26,10 @@ function onSearch(event) {
 
 function renderCountryCard(country) {
   if (country.length === 1) {
-    countryCard.innerHTML = countriesCardTpempl(country);
+    countryCard.innerHTML = countriesTeampl(country);
     countriesList.innerHTML = '';
   } else if (country.length > 1 && country.length < 11) {
-    countriesList.innerHTML = countriesTeampl(country);
+    countriesList.innerHTML = countriesCardTpempl(country);
     countryCard.innerHTML = '';
   } else if (country.length > 10) {
     myNotice();
