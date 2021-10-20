@@ -1,17 +1,6 @@
 export default {
-  input: document.querySelector('.form-control'),
-  results: document.querySelector('.results')
+  searching: document.querySelector('.js-search-form'),
+  countriesList: document.querySelector('.js-counties-list'),
+  countryCard: document.querySelector('.js-country-card'),
 }
 
-
-// export default {
-//   // weather widget
-//   weatherContainer: document.getElementById('widget'),
-//   searchForm: document.querySelector('.search'),
-//   showWidgetBtn: document.getElementById('showWidget'),
-//   card: document.querySelector('.card'),
-//   // gallery images
-//   list: document.getElementById('list'),
-//   form: document.getElementById('form'),
-//   loadMoreBtn: document.getElementById('loadMore'),
-// }

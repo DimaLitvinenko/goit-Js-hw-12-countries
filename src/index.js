@@ -1,41 +1,36 @@
-import { notice, defaultModules } from '@pnotify/core';
-import * as PNotifyDesktop from '@pnotify/desktop';
-// import * as PNotifyAnimate from '@pnotify/animate';
-// import '@pnotify/core/dist/PNotify.css';
-// import '@pnotify/core/dist/BrightTheme.css';
-import './styles/styles.scss';
-import refs from './js/refs'
-const { input, results } = refs;
+import './sass/main.scss';
+import debounce from 'lodash.debounce';
+import myNotice from './js/notice.js';
+import countriesTeampl from './templates/countriesInfo.hbs';
+import countriesCardTpempl from './templates/countriesList.hbs';
+import API from './js/fetchCountries.js';
+import refs from './js/refs.js';
+const { searching, countriesList, countryCard } = refs;
 
-let searchQuery = '';
+searching.addEventListener('input', debounce(onSearch, 500));
 
-input.addEventListener('input', debounce(searchQueryBundler, 500));
-console.log(input);
-function renderCountries(country) {
-    if (!country) {
-        results.innerHTML = '';
-        return
-    } else if (country.length === 1) {
-        const markup = countryInfo(country);
-        results.insertAdjacentHTML('beforeend', markup);
-    } else if (country.length <= 10) {
-        const markup = countriesList(country);
-        results.insertAdjacentHTML('beforeend', markup);
-    } else if (country.length > 10) {
-        notice('Too many matches found. Please enter a more specific query!');
-    } 
-};
+function onSearch(event) {
+  const searchQuery = event.target.value;
 
-function searchQueryBundler(e) {
-    results.innerHTML = '';
-    searchQuery = input.value.trim();
-    if (!searchQuery) {
-        return
-    };
-    console.log(searchQuery);
-    fetchCountries(searchQuery).then(renderCountries)
-};
+  if (searchQuery === '') {
+    countriesList.innerHTML = '';
+    countryCard.innerHTML = '';
+    return;
+  }
 
+  return API.fetchCountries(searchQuery)
+    .then(renderCountryCard)
+    .catch(error => console.log(error));
+}
 
-// import './js/weatherWidget'
-// import './js/galleryImages'
+function renderCountryCard(country) {
+  if (country.length === 1) {
+    countryCard.innerHTML = countriesCardTpempl(country);
+    countriesList.innerHTML = '';
+  } else if (country.length > 1 && country.length < 11) {
+    countriesList.innerHTML = countriesTeampl(country);
+    countryCard.innerHTML = '';
+  } else if (country.length > 10) {
+    myNotice();
+  }
+}

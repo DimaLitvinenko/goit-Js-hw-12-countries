@@ -1,28 +1,9 @@
-import { notice, defaultModules } from '@pnotify/core';
-import * as PNotifyDesktop from '@pnotify/desktop';
-// import * as PNotifyAnimate from '@pnotify/animate';
-// import '@pnotify/core/dist/PNotify.css';
-// import '@pnotify/core/dist/BrightTheme.css';
-import refs from './refs'
-const { input } = refs;
+const BASE_URL = 'https://restcountries.com/v2';
 
-// defaultModules.set(PNotifyMobile, {});
-// alert({
-//     text: 'Notice me, senpai!'
-//   });
+function fetchCountries(searchQuery) {
+  return fetch(`${BASE_URL}/name/${searchQuery}`).then(response => response.json());
+}
 
+export default { fetchCountries };
 
-export default function fetchCountries(searchQuery) {
-    return fetch(`https://restcountries.eu/rest/v3/name/${searchQuery}`)
-    .then(response => {
-        if (response.ok) return response.json();
-        throw new notice(`NOT FOUND: ERROR ${response.status}`);
-    })
-    .catch(error => { 
-        setTimeout(() => { 
-            input.value = ''; 
-        }, 3000)
-        console.log(error);
-    })
-};
      
