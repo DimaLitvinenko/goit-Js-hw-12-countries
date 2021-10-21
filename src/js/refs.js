@@ -1,5 +1,5 @@
 export default {
-  searchForm: document.querySelector('.js-search-form'),
+  inputEl: document.querySelector('.js-search-input'),
   countriesList: document.querySelector('.js-counties-list'),
   countryCard: document.querySelector('.js-country-card'),
 }
