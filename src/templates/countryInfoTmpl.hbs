@@ -1,19 +1,41 @@
 {{#each this}}
 <div class="card-wrapper">
-    <h1 class="card-title">{{name}}</h1>
-    <img src="{{flag}}" alt="{{flag}}" class="card-img" />
-    <p class="card-item">Capital: {{capital}}</p>
-    <p class="card-item">Population: {{population}} people</p>
-    <p class="card-item">Country code: {{numericCode}}</p>
-     <p class="card-item">Area: {{area}} km</p>
-     <p class="card-item">Time: {{timezones}}</p>
-    <p class="card-item">Phone code: +{{callingCodes}}</p>
-    <h2 class="card-item">Language:</h2>
-    <ul>
+<ul class="card-list">
+    <li class="card-item">
+        <h3>Capital:</h3>
+        <p class="card-item_text"> {{capital}}</p>
+    </li>
+    <li class="card-item">
+        <h3>Population:</h3>
+        <p class="card-item_text"> {{population}} people</p>
+    </li>
+    <li class="card-item">
+        <h3>Country code:</h3>
+        <p class="card-item_text"> {{numericCode}}</p>
+    </li>
+    <li class="card-item">
+        <h3>Area:</h3>
+        <p class="card-item_text"> {{area}} km</p>
+    </li>
+    {{!-- <li class="card-item">Time:
+        <p class="card-item_text"> {{timezones}}</p>
+    </li> --}}
+    <li class="card-item">
+        <h3>Phone code:</h3>
+        <p class="card-item_text"> +{{callingCodes}}</p>
+    </li>
+    <li class="card-item">
+        <h2 class="card-second-title">Language:</h2>
         {{#each languages}}
-        <li>{{name}}</li>
+        <p class="card-item_text">{{name}}</p>
         {{/each}}
-    </ul>
-    
+    </li>
+        
+    </li>
+</ul>
+    <div class="image-wrapper">
+        <h1 class="card-title">{{name}}</h1>
+        <img class="card-img" src="{{flag}}" alt="{{flag}}"/>
+    </div>
 </div>
 {{/each}}

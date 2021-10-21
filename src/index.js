@@ -7,7 +7,7 @@ import API from './js/fetchCountries.js'
 import refs from './js/refs.js'
 const { searchForm, countriesList, countryCard } = refs;
 
-searchForm.addEventListener('input', debounce(onSearch, 500));
+searchForm.addEventListener('input', debounce(onSearch, 600));
 
 function onSearch({ target }) {
   const searchQuery = target.value;
@@ -22,7 +22,6 @@ function onSearch({ target }) {
   return API.fetchCountries(searchQuery)
     .then(renderCountryCard)
     .catch(onFetchError);
-    // .finally(() => searchForm.reset());
 }
 
 function renderCountryCard(country) {
@@ -32,19 +31,16 @@ function renderCountryCard(country) {
   if (country.length === 1) {
     countryCard.innerHTML = countryInfo(country);
     countriesList.innerHTML = '';
-
   } else if (country.length > 1 && country.length < 11) {
     countriesList.innerHTML = countriesName(country);
     countryCard.innerHTML = '';
-
-  } else if (country.length > 10) {
-    myNotice();
-  }
+  } else if (country.length > 10 ) {
+    onFetchError();
+  } else if (country.status === 404) {
+    onFetchError()
+  };
 }
 
-function onFetchError(country) {
-  if(!country.status === 404) {
-    return;
-  }
-  return myNotice();
+function onFetchError() {
+  myNotice();
 }
