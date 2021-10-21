@@ -1,11 +1,6 @@
-import { notice } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
+import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css'
 
 export default function myNotification() {
-  return notice({
-    text: 'Too many matches found. Please enter a more specific query!',
-    hide: true,
-    delay: 3000,
-  });
-}
+  return error ({title: 'Uh, no!', text: 'Too many matches found. Enter a more specific query', role: false});
+};

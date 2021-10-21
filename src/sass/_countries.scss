@@ -18,6 +18,31 @@ ul {
   padding: 0;
   margin: 0;
 }
+// ==== countries.html
+.countries__section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.countries__container {
+  width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-form {
+  text-align: center;
+}
+.country__input {
+  padding: 10px;
+  min-width: 350px;
+}
+.countries__list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
 .country-item {
   font-size: 28px;
 }
@@ -70,32 +95,9 @@ ul {
   padding-left: 0;
 }
 
-.countries__section {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
 
-.countries__container {
-  width: 1200px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.search-form {
-  text-align: center;
-}
 
-.country__input {
-  padding: 10px;
-  min-width: 350px;
-}
-
-.countries__list {
-  margin-top: 0;
-  margin-bottom: 0;
-}
 .counties__item {
   font-size: 28px;
 }

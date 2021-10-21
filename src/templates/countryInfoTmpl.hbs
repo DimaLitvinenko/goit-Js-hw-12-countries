@@ -1,18 +1,19 @@
 {{#each this}}
 <div class="card-wrapper">
     <h1 class="card-title">{{name}}</h1>
+    <img src="{{flag}}" alt="{{flag}}" class="card-img" />
     <p class="card-item">Capital: {{capital}}</p>
     <p class="card-item">Population: {{population}} people</p>
     <p class="card-item">Country code: {{numericCode}}</p>
-     <p class="card-item">Area: {{area}}km</p>
-     <p class="card-item">Time: {{timezones }}</p>
-    {{!-- <p class="card-item">Currencie: {{currencies}}</p> --}}
-    <h class="card-item">Language:</h>
+     <p class="card-item">Area: {{area}} km</p>
+     <p class="card-item">Time: {{timezones}}</p>
+    <p class="card-item">Phone code: +{{callingCodes}}</p>
+    <h2 class="card-item">Language:</h2>
     <ul>
         {{#each languages}}
         <li>{{name}}</li>
         {{/each}}
     </ul>
-    <img src="{{flag}}" alt="{{flag}}" class="card-img" />
+    
 </div>
 {{/each}}

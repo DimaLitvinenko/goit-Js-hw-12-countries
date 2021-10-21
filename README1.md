@@ -407,3 +407,51 @@ const myNotice = notice({
 `}`
 
 The Animate module also creates a method, `attention(aniClass, callback)`, on notices which accepts an attention grabber class and an animation completed callback.
+
+
+## dynNotice()
+
+```js
+function dynNotice() {
+  let percent = 0;
+  const notice = PNotify.info({
+    text: 'Please Wait',
+    icon: 'fas fa-spinner fa-pulse',
+    hide: false,
+    shadow: false,
+    width: '200px',
+    closer: false,
+    sticker: false
+  });
+
+  notice.on('pnotify:afterOpen', () => {
+    setTimeout(() => {
+      notice.update({
+        title: false
+      });
+      const interval = setInterval(() => {
+        percent += 2;
+        const options = {
+          text: percent + '% complete.'
+        };
+        if (percent === 80) {
+          options.title = 'Almost There';
+        }
+        if (percent >= 100) {
+          window.clearInterval(interval);
+          options.title = 'Done!';
+          options.type = 'success';
+          options.hide = true;
+          options.icon = 'fas fa-check';
+          options.shadow = true;
+          options.width = PNotify.defaults.width;
+          options.closer = true;
+          options.sticker = true;
+        }
+        notice.update(options);
+      }, 120);
+    }, 2000);
+  });
+}
+```
+
