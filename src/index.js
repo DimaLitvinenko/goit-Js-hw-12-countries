@@ -1,112 +1,56 @@
-import './sass/main.scss'
 import debounce from 'lodash.debounce'
+import 'material-design-icons/iconfont/material-icons.css'
+import './sass/main.scss'
+
 import countryInfo from './templates/countryInfoTmpl.hbs'
 import countriesName from './templates/countriesNameTmpl.hbs'
-import showError from './js/notice.js'
+
+import showError from './js/onNotice.js'
 import fetchCountries from './js/fetchCountries.js'
 import refs from './js/refs.js'
+const { inputEl, countryCard } = refs;
 
-const { inputEl, countriesList, countryCard } = refs;
+inputEl.addEventListener('input', debounce(onSearch, 800));
 
-inputEl.addEventListener('input', debounce(onSearch, 600));
+function onSearch({ target }) {
+  clearCountries();
+  const searchQuery = target.value;
 
-function onSearch() {
-  const searchQuery = getSearchQuery();
-  // Если запрос пустая строка
-  if(!searchQuery) {
+  if (!searchQuery) {      // Если запрос пустая строка
     return;
   }
-  // Запрос на Rest Countries API
-  fetchCountries(searchQuery)
-    .then(country => {
-      countriesList.innerHTML = ''; 
-      countryCard.innerHTML = '';
-
-      if (country.length > 10) {
-        return showError('Hey Buddy! Need more letters for searching!');
-      } 
-      else if (country.length > 1 && country.length < 11) {
-        renderCountriesNames(country);
-      } 
-      else if (country.length === 1) {
-        renderCountryCard(country);
-      }
-    })
-    .catch(error => {
-      if (error === 404) {
-        showError('Oh Dude! Check your device it\'s doesn\’t valid content'); 
-      } 
-      else {
-        showError('Ops! Smothing wrong. Check the field and Try again!');
-      }
-    });
+  fetchCountries(searchQuery)    // Запрос на Rest Countries API
+  .then(data => {
+    if (data.length > 10) {
+      showError(
+        `Too many matches found! Please enter more specific query!`
+      );
+    } else if (data.status === 404) {
+      showError(
+        'Error! Country not found!'
+      );
+    } else if (data.length === 1) {
+      renderCountryCard(data);
+    } else if (data.length > 1 && data.length < 11) {
+      renderCountriesNames(data);
+    } else if (data.statusText !== "OK") {
+      showError(
+        'Query Not found!'
+      )
+    }
+  })
 }
 
-// Получает запрос, введенный в инпут
-function getSearchQuery() {
-  return inputEl.value;
-}
-
-// Рендерит карточку для одной страны
-function renderCountryCard(country) {
-  const cardMarkup = countryInfo(country);
+function renderCountryCard(data) {     // Рендерит карточку для одной страны
+  const cardMarkup = countryInfo(data);
   countryCard.insertAdjacentHTML('beforeend', cardMarkup);
 }
 
-// Рендерит список стран
-function renderCountriesNames(country) {
-  const namesMarkup = countriesName(country);
+function renderCountriesNames(data) {   // Рендерит список стран
+  const namesMarkup = countriesName(data);
   countryCard.insertAdjacentHTML('beforeend', namesMarkup);
 }
-// if (country.length === 1) {
-  //   countryCard.innerHTML = countryInfo(country);
-  //   countriesList.innerHTML = '';
-  // } else if (country.length > 1 && country.length < 11) {
-  //   countriesList.innerHTML = countriesName(country);
-  //   countryCard.innerHTML = '';
-  // } else if (country.length > 10 ) {
-  //   showStackTopLeft('notice')
-  // } else if (country.status === 404) {
-  //   showStackTopLeft('error')
-  // };
-// function onFetchError() {
-//   showStackTopLeft('error')
-// }
 
-//   console.log(typeof window.stackTopLeft === 'undefined');
-// function showStackTopLeft(type) {
-//   if (typeof window.stackTopLeft === 'undefined') {
-//     window.stackTopLeft = new PNotify.Stack({
-//       dir1: 'down',
-//       dir2: 'right',
-//       firstpos1: 25,
-//       firstpos2: 25,
-//       push: 'top',
-//       maxStrategy: 'close'
-//     });
-//   }
-//   const opts = {
-//     title: 'Over Here',
-//     text: "Check me out. I'm in a different stack.",
-//     stack: window.stackTopLeft
-//   };
-//   console.log(type);
-//     if (type === 'error') {
-//     return error({
-//     title: 'Error',
-//     text: 'Couldn\'t process the request you entered!', 
-//     destroy: true,  
-//     type: 'error', 
-//     closer: true,
-//     delay: 500,
-//   })} else if (type === 'notice') {
-//       return notice({
-//         text: 'Too many matches found. Enter a more specific query', 
-//         destroy: true,  
-//         type: 'notice', 
-//         closer: true,
-//         delay: 1400,
-//     });
-//   }
-//   // PNotify.alert(opts);
-// }
+function clearCountries() {
+  countryCard.innerHTML = '';
+}

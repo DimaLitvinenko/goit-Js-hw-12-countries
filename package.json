@@ -23,6 +23,7 @@
   "devDependencies": {
     "@pnotify/core": "^5.2.0",
     "@pnotify/countdown": "^5.2.0",
+    "material-design-icons": "^3.0.1",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-custom-dist-structure": "^1.1.19",
     "parcel-plugin-handlebars-precompile": "^1.0.2",

@@ -19,6 +19,7 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   text-align: center;
+
 }
 
 ul, p, h1, h2, h3 {
@@ -145,6 +146,9 @@ label {
 }
 .card-img {
   max-width: 500px;
+  box-shadow: 2px 3px 4px rgba(43, 134, 128, 0.484), 5px 7px 9px rgba(22, 27, 129, 0.538),
+    10px 14px 18px rgba(26, 190, 70, 0.3);
+  border-radius: 4px 15px 4px 15px;
 }
 
 .card-item_text {
@@ -158,15 +162,4 @@ label {
 .card-second-title {
   font-size: 20px;
   color: #093131;
-}
-
-
-
-
-.pnotify-icon {
-  width: 40px;
-}
-
-.brighttheme-icon-notice {
-  width: 40px;
 }
