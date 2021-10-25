@@ -11,10 +11,11 @@ export default function showError(errorMessage) {
   error({
     text: errorMessage,
     hide: true,
-    delay: 700,
+    delay: 800,
     sticker: true,
     mode: 'light',
     width: '100%',
+    maxTextHeight: null,
     icons: 'brighttheme',
     closer: true,
     closerHover: false,
